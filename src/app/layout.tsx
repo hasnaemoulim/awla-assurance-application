@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/layout/Header';
+import HeaderWrapper from '@/components/layout/HeaderWrapper';
 import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="fr" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-white`}>
         <div className="min-h-screen flex flex-col">
-          <Header />
+          <HeaderWrapper />
           <main className="flex-1">
             {children}
           </main>

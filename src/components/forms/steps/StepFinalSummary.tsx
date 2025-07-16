@@ -1,6 +1,7 @@
+// src/components/forms/steps/StepFinalSummary.tsx
 "use client";
 import { useState } from 'react';
-import { CheckCircleIcon, DocumentTextIcon, PhoneIcon, MailIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, DocumentTextIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import { StepProps } from '@/types/claim';
 
 export default function StepFinalSummary({ formData, onPrev }: StepProps) {
@@ -42,32 +43,11 @@ export default function StepFinalSummary({ formData, onPrev }: StepProps) {
           </p>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-dark">Prochaines étapes</h3>
-          <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-white rounded-xl p-4 border border-light">
-              <div className="text-awlaGreen text-2xl mb-2">📧</div>
-              <h4 className="font-semibold text-dark mb-1">Email de confirmation</h4>
-              <p className="text-neutral">Dans les 5 prochaines minutes</p>
-            </div>
-            <div className="bg-white rounded-xl p-4 border border-light">
-              <div className="text-awlaGreen text-2xl mb-2">🔍</div>
-              <h4 className="font-semibold text-dark mb-1">Analyse d'expert</h4>
-              <p className="text-neutral">Sous 48h ouvrées</p>
-            </div>
-            <div className="bg-white rounded-xl p-4 border border-light">
-              <div className="text-awlaGreen text-2xl mb-2">📞</div>
-              <h4 className="font-semibold text-dark mb-1">Premier contact</h4>
-              <p className="text-neutral">Sous 72h maximum</p>
-            </div>
-          </div>
-        </div>
-
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button className="px-6 py-3 bg-awlaGreen text-dark font-semibold rounded-lg hover:bg-dark hover:text-white transition-colors">
             Suivre ma réclamation
           </button>
-          <button className="px-6 py-3 border-2 border-awlaGreen text-awlaGreen rounded-lg hover:bg-awlaGreen hover:text-dark transition-colors">
+          <button className="px-6 py-3 border-2 border-awlaGreen text-awlaGreen rounded-lg hover:bg-awlaGreen hover:text-white transition-colors">
             Nouvelle réclamation
           </button>
         </div>
@@ -84,145 +64,100 @@ export default function StepFinalSummary({ formData, onPrev }: StepProps) {
         </p>
       </div>
 
-      {/* Résumé final */}
-      <div className="bg-white rounded-xl p-6 border border-awlaGreen/20 space-y-4">
-        <h3 className="text-xl font-semibold text-dark mb-4">Résumé de votre réclamation</h3>
+      {/* Résumé complet */}
+      <div className="bg-white rounded-xl p-6 border border-awlaGreen/20">
+        <h3 className="text-lg font-semibold text-dark mb-4 flex items-center">
+          <DocumentTextIcon className="w-5 h-5 mr-2 text-awlaGreen" />
+          Récapitulatif de votre réclamation
+        </h3>
         
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Type d'utilisateur :</span>
-              <span className="font-medium text-dark">
-                {formData.userType === 'particulier' ? 'Particulier' : 'Entreprise'}
-              </span>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Assurance :</span>
-              <span className="font-medium text-dark">
-                {formData.insuranceType.startsWith('autre:') 
-                  ? formData.insuranceType.slice(6) 
-                  : formData.insuranceType}
-              </span>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Compagnie :</span>
-              <span className="font-medium text-dark">
-                {formData.insuranceCompany.startsWith('Autre:') 
-                  ? formData.insuranceCompany.slice(6) 
-                  : formData.insuranceCompany}
-              </span>
-            </div>
-          </div>
-          
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Contact :</span>
-              <span className="font-medium text-dark">{formData.email}</span>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Téléphone :</span>
-              <span className="font-medium text-dark">{formData.phone}</span>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-awlaGreen rounded-full"></span>
-              <span className="text-sm text-neutral">Montant :</span>
-              <span className="font-medium text-dark">
-                {formData.claimAmount ? `${formData.claimAmount} MAD` : 
-                 formData.claimRange ? `${formData.claimRange} MAD` : 'Non spécifié'}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Conditions d'utilisation */}
-      <div className="bg-light rounded-xl p-6 border border-awlaGreen/20">
-        <h3 className="text-lg font-semibold text-dark mb-4">Conditions d'utilisation</h3>
-        <div className="space-y-3 text-sm">
-          <label className="flex items-start space-x-3">
-            <input 
-              type="checkbox" 
-              className="mt-1 w-4 h-4 text-awlaGreen rounded border-gray-300 focus:ring-awlaGreen"
-              required
-            />
-            <span className="text-neutral">
-              J'accepte les <a href="#" className="text-awlaGreen hover:underline">conditions générales d'utilisation</a> et 
-              la <a href="#" className="text-awlaGreen hover:underline">politique de confidentialité</a>
-            </span>
-          </label>
-          
-          <label className="flex items-start space-x-3">
-            <input 
-              type="checkbox" 
-              className="mt-1 w-4 h-4 text-awlaGreen rounded border-gray-300 focus:ring-awlaGreen"
-              required
-            />
-            <span className="text-neutral">
-              J'autorise Awla Assurances à me contacter concernant ma réclamation
-            </span>
-          </label>
-          
-          <label className="flex items-start space-x-3">
-            <input 
-              type="checkbox" 
-              className="mt-1 w-4 h-4 text-awlaGreen rounded border-gray-300 focus:ring-awlaGreen"
-            />
-            <span className="text-neutral">
-              J'accepte de recevoir des informations sur les services Awla Assurances (optionnel)
-            </span>
-          </label>
-        </div>
-      </div>
-
-      {/* Informations importantes */}
-      <div className="bg-primary/10 rounded-xl p-6 border border-primary/20">
-        <div className="flex items-start space-x-3">
-          <div className="text-primary text-xl">ℹ️</div>
+        <div className="grid md:grid-cols-2 gap-6 text-sm">
           <div>
-            <h4 className="font-semibold text-dark mb-2">Informations importantes</h4>
-            <ul className="text-neutral text-sm space-y-1">
-              <li>• Votre réclamation sera traitée dans un délai maximum de 48h</li>
-              <li>• Vous recevrez une confirmation par email avec votre numéro de suivi</li>
-              <li>• Nos experts vous contacteront pour affiner votre dossier si nécessaire</li>
-              <li>• Aucun frais ne vous sera demandé tant que votre réclamation n'aboutit pas</li>
-            </ul>
+            <h4 className="font-semibold text-dark mb-2">Informations personnelles</h4>
+            <p className="text-neutral">
+              {formData.firstName} {formData.lastName}<br />
+              {formData.userType === 'entreprise' && formData.companyName && (
+                <>{formData.companyName}<br /></>
+              )}
+              {formData.email}<br />
+              {formData.phone}
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold text-dark mb-2">Assurance concernée</h4>
+            <p className="text-neutral">
+              Type: {formData.insuranceType}<br />
+              Compagnie: {formData.insuranceCompany}<br />
+              {formData.contractNumber && <>Contrat: {formData.contractNumber}<br /></>}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Boutons d'action */}
+      {/* Engagement de service */}
+      <div className="bg-awlaGreen/10 rounded-xl p-6 border border-awlaGreen/20">
+        <h3 className="text-lg font-semibold text-dark mb-4">Nos engagements</h3>
+        <div className="grid md:grid-cols-3 gap-4 text-sm">
+          <div className="flex items-start space-x-2">
+            <CheckCircleIcon className="w-5 h-5 text-awlaGreen flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-medium text-dark">Analyse gratuite</p>
+              <p className="text-neutral">Évaluation de votre dossier sans frais</p>
+            </div>
+          </div>
+          <div className="flex items-start space-x-2">
+            <CheckCircleIcon className="w-5 h-5 text-awlaGreen flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-medium text-dark">Accompagnement expert</p>
+              <p className="text-neutral">Suivi personnalisé par nos spécialistes</p>
+            </div>
+          </div>
+          <div className="flex items-start space-x-2">
+            <CheckCircleIcon className="w-5 h-5 text-awlaGreen flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-medium text-dark">Honoraires de résultat</p>
+              <p className="text-neutral">Vous ne payez qu'en cas de succès</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact d'urgence */}
+      <div className="bg-primary/10 rounded-xl p-6 border border-primary/20">
+        <h3 className="text-lg font-semibold text-dark mb-4">Besoin d'aide ?</h3>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex items-center space-x-2">
+            <PhoneIcon className="w-5 h-5 text-primary" />
+            <span className="text-dark font-medium">+212 5XX XX XX XX</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <EnvelopeIcon className="w-5 h-5 text-primary" />
+            <span className="text-dark font-medium">support@awla-assurances.ma</span>
+          </div>
+        </div>
+      </div>
+
       <div className="flex justify-between pt-8">
         <button
           onClick={onPrev}
           className="px-6 py-3 border-2 border-neutral/20 text-neutral rounded-lg hover:bg-light transition-colors"
+          disabled={isSubmitting}
         >
-          Modifier les informations
+          Modifier
         </button>
-        
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="px-8 py-4 bg-awlaGreen text-dark font-semibold rounded-lg hover:bg-dark hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+          className="px-8 py-4 bg-awlaGreen text-dark font-bold rounded-lg hover:bg-dark hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
         >
           {isSubmitting ? (
             <>
-              <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
-              <span>Envoi en cours...</span>
+              <div className="animate-spin w-5 h-5 border-2 border-dark border-t-transparent rounded-full mr-2"></div>
+              Soumission en cours...
             </>
           ) : (
-            <>
-              <DocumentTextIcon className="w-5 h-5" />
-              <span>Soumettre ma réclamation</span>
-            </>
+            'Soumettre ma réclamation'
           )}
         </button>
       </div>

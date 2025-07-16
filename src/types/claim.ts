@@ -23,11 +23,31 @@ export interface FormData {
   contactDate: string;
   sinisterDate: string;
   sinisterNumber: string;
+
+  // Nouveau : Justice et organismes de contrôle
+  hasContactedAuthorities: boolean;
+  authorityType: string;
+  authorityContactDate: string;
+  authorityCaseNumber: string;
+  authorityStatus: string;
+  
+  // Détails du litige
+  litigeType: string;
+  litigeDescription: string;
   companyResponse: string;
+  companyResponseDetails: string;
+  availableDocuments: string[];
   
   // Montant réclamé
-  claimAmount: string;
+  hasExactAmount: boolean;
+  exactAmount: string;
   claimRange: string;
+  damageDetails: string;
+  claimObjectives: string[];
+  
+  // Consentements
+  acceptsTerms: boolean;
+  acceptsDataProcessing: boolean;
   
   // Champs spécifiques entreprise
   companyName: string;

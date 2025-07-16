@@ -33,26 +33,25 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo adapté Awla */}
           <Link href="/" className="flex items-center space-x-4 group">
-  <div className="flex-shrink-0">
-    <Image
-      src="/images/awla.png"
-      alt="Logo Awla Assurances"
-      width={70}
-      height={70}
-      className="rounded-xl object-contain"
-      priority
-    />
-  </div>
-  <div className="hidden sm:block">
-    <div className="text-2xl font-bold text-awlaGreen group-hover:text-primary transition-colors">
-      Awla Assurances
-    </div>
-    <div className="text-sm text-gold -mt-1">
-      Expertise en défense des assurés
-    </div>
-  </div>
-</Link>
-
+            <div className="flex-shrink-0">
+              <Image
+                src="/images/awla.png"
+                alt="Logo Awla Assurances"
+                width={70}
+                height={70}
+                className="rounded-xl object-contain"
+                priority
+              />
+            </div>
+            <div className="hidden sm:block">
+              <div className="text-2xl font-bold text-awlaGreen group-hover:text-primary transition-colors">
+                Awla Assurances
+              </div>
+              <div className="text-sm text-gold -mt-1">
+                Expertise en défense des assurés
+              </div>
+            </div>
+          </Link>
 
           {/* Navigation Desktop */}
           <div className="hidden lg:flex items-center space-x-1">
@@ -67,14 +66,14 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Boutons d'action adaptés */}
+          {/* Boutons d'action adaptés - ROUTES CORRIGÉES */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/connexion">
+            <Link href="/auth/login">
               <button className="px-6 py-2.5 text-awlaGreen font-semibold border-2 border-awlaGreen rounded-lg hover:bg-awlaGreen hover:text-dark transition-all duration-200 bg-white">
                 Se connecter
               </button>
             </Link>
-            <Link href="/inscription">
+            <Link href="/auth/register">
               <button className="px-6 py-2.5 bg-awlaGreen text-dark font-semibold rounded-lg hover:bg-dark hover:text-white transition-all duration-200 shadow-md hover:shadow-lg">
                 S'inscrire
               </button>
@@ -91,7 +90,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menu mobile déroulant */}
+        {/* Menu mobile déroulant - ROUTES CORRIGÉES */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-awlaGreen/10 bg-white/95 backdrop-blur-md">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -106,12 +105,12 @@ export default function Header() {
                 </Link>
               ))}
               <div className="mt-4 space-y-2">
-                <Link href="/connexion" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/auth/login" onClick={() => setIsMenuOpen(false)}>
                   <button className="w-full px-4 py-2 text-awlaGreen font-semibold border-2 border-awlaGreen rounded-lg hover:bg-awlaGreen hover:text-dark bg-white">
                     Se connecter
                   </button>
                 </Link>
-                <Link href="/inscription" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/auth/register" onClick={() => setIsMenuOpen(false)}>
                   <button className="w-full px-4 py-2 bg-awlaGreen text-dark font-semibold rounded-lg hover:bg-dark hover:text-white">
                     S'inscrire
                   </button>

@@ -44,9 +44,7 @@ export default function ClaimIntro({ onStartClaim }: ClaimIntroProps) {
           {/* Contenu principal */}
           <div className="space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-center px-4 py-2 bg-awlaGreen/10 border border-awlaGreen rounded-full">
-              <span className="text-awlaGreen text-sm font-semibold">🚀 Réclamation simplifiée</span>
-            </div>
+            
 
             {/* Titre principal */}
             <div className="space-y-6">
